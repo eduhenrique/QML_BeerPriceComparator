@@ -9,10 +9,13 @@ Page1Form {
         label2page.text = textField1.text;
         console.log("Button Pressed. Entered text: " + textField1.text);
 
-        app.db.transaction(function(tx){
-            tx.executeSql('INSERT INTO Beer VALUES(?, ?)', [ 1, 'world' ]);
+        databaseInstance.db.transaction(function(tx){
+            tx.executeSql('INSERT INTO BeerTeste VALUES(?, ?)', [ null, 'world' ]);
         }
         )
+
+
+
     }
 
 

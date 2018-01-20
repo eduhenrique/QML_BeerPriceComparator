@@ -3,7 +3,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.LocalStorage 2.0
 
-//bit.do/espa04
+//  Link do papper QMl bit.do/espa04qt
 
 ApplicationWindow {
     id: app
@@ -11,7 +11,10 @@ ApplicationWindow {
     width: 640
     height: 480
     title: qsTr("Hello World")
-    property var db : LocalStorage.openDatabaseSync("QBeerDB", "1.0", "Save information of Beer", 1000000)
+
+    Database{
+        id: databaseInstance
+    }
 
     SwipeView {
         id: swipeView
@@ -57,19 +60,7 @@ ApplicationWindow {
         }
     }
 
-    Component.onCompleted: connection()
 
-    function connection() {
-
-        console.log("db:" + app.db)
-
-        app.db.transaction(
-            function(tx){
-                tx.executeSql("CREATE TABLE IF NOT EXISTS Beer(id INT, nome TEXT)");
-                // /home/qt/.local/share/QML_BeerPriceComparator
-                }
-            )
-    }
 
 
 

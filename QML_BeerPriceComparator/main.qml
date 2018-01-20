@@ -13,12 +13,23 @@ ApplicationWindow {
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
-        Page1 {
+        Page1 {            
         }
 
         Page {
+            id: secondPage
             Label {
+                id:label2page
                 text: qsTr("Second page")
+                anchors.centerIn: parent
+            }
+        }        
+
+        Page {
+            id:thirdPage
+            Label {
+                id:label3page
+                text: qsTr("Third page")
                 anchors.centerIn: parent
             }
         }
@@ -32,6 +43,9 @@ ApplicationWindow {
         }
         TabButton {
             text: qsTr("Second")
+        }
+        TabButton {
+            text: qsTr("Third one")
         }
     }
 }

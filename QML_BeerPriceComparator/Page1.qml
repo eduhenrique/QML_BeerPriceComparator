@@ -3,22 +3,18 @@ import QtQuick.LocalStorage 2.0
 
 Page1Form {
     button1.onClicked: {
-        label2page.text = textField1.text.toString();
+        //Binding
+        //label2page.text = Qt.binding(function() { return textField1.text } )
+        //Atribuição/
+        label2page.text = textField1.text;
         console.log("Button Pressed. Entered text: " + textField1.text);
 
+        app.db.transaction(function(tx){
+            tx.executeSql('INSERT INTO Beer VALUES(?, ?)', [ 1, 'world' ]);
+        }
+        )
     }
-    Component.onCompleted: connection()
 
 
-    function connection() {
-        var db = LocalStorage.openDatabaseSync("QBeerDB", "1.0", "Save information of Beer", 10000);
-
-        db.transaction(
-            function(tx){
-                tx.executeSql('CREATE TABLE IF NOT EXISTS Beer(nome TEXT)');
-                }
-            )
-        return db;
-    }
 }
 

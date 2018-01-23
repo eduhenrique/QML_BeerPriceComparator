@@ -43,6 +43,8 @@ ApplicationWindow {
                 anchors.centerIn: parent
             }
         }
+        Cadastro{
+        }
 
     }
 
@@ -57,6 +59,9 @@ ApplicationWindow {
         }
         TabButton {
             text: qsTr("Third one")
+        }
+        TabButton {
+            text: qsTr("Cadastro")
         }
     }
 

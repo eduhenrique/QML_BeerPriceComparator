@@ -28,7 +28,7 @@ Item {
     function addBeer(nome, tamanho, preco, local){
         var rs = {}
         database.db.transaction(function(tx){
-          rs = tx.executeSql('INSERT INTO Beer(?,?,?,?,?)',[null, nome, tamanho, preco, local])
+          rs = tx.executeSql('INSERT INTO Beer VALUES(?,?,?,?,?)', [null, nome, tamanho, preco, local])
             beerRegistered({
                 "itemId": parseInt(rs.insertId),
                 "nome": nome,

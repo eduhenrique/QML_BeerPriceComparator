@@ -1,12 +1,25 @@
 import QtQuick 2.7
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.0
+import QtQuick.Controls 2.1
 
-Item {
+Page {
+    title: "Cadastrar Cerveja"
+
+    Rectangle{
+        id: topBar
+        width: parent.width
+        height: 40
+        border.color: "black"
+        Label{
+            text: qsTr("Cadastro")
+            color:"red"
+
+            font.pointSize: Font.Light
+        }
+    }
 
     Column{
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.margins:50
 
         Row {
             id:row1
@@ -70,6 +83,23 @@ Item {
             Button {
                 id: cadastrar
                 text: qsTr("Cadastrar")
+
+                onClicked: {
+                    console.log("Cadastro clicked")
+                    var volume = tamanho.text + " ml"
+                    var rs = databaseInstance.addBeer(nome.text, volume, preco.text, local.text)
+                    console.log(rs)
+                    if(rs){
+                        alert("Cadastro realizado com sucesso.")
+                        nome.clear()
+                        tamanho.clear()
+                        preco.clear()
+                        local.clear()
+                    }
+                    else{
+                        alert("Cadastro não realizado.")
+                    }
+                }
             }
         }
     }

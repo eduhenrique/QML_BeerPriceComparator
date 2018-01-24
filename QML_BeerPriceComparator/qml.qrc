@@ -6,5 +6,6 @@
         <file>qtquickcontrols2.conf</file>
         <file>Database.qml</file>
         <file>Cadastro.qml</file>
+        <file>BeerList.qml</file>
     </qresource>
 </RCC>

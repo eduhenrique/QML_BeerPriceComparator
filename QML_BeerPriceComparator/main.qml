@@ -10,7 +10,7 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Beer Price Comparator")
 
     Database{
         id: databaseInstance
@@ -21,7 +21,7 @@ ApplicationWindow {
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
-        Page1 {
+        /*Page1 {
             id: pg1
         }
 
@@ -42,7 +42,7 @@ ApplicationWindow {
                 text: qsTr("Third page")
                 anchors.centerIn: parent
             }
-        }
+        }*/
         Cadastro{
         }
 
@@ -51,7 +51,7 @@ ApplicationWindow {
     footer: TabBar {
         id: tabBar
         currentIndex: swipeView.currentIndex
-        TabButton {
+        /*TabButton {
             text: qsTr("First")
         }
         TabButton {
@@ -59,7 +59,7 @@ ApplicationWindow {
         }
         TabButton {
             text: qsTr("Third one")
-        }
+        }*/
         TabButton {
             text: qsTr("Cadastro")
         }

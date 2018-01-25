@@ -94,16 +94,15 @@ Page {
                     console.log("Cadastro clicked")
                     var volume = tamanho.text + " ml"
                     var rs = databaseInstance.addBeer(nome.text, volume, preco.text, local.text)
-                    console.log(rs)
-                    if(rs){
-                        alert("Cadastro realizado com sucesso.")
+
+                    if(rs){                        
                         nome.clear()
                         tamanho.clear()
                         preco.clear()
                         local.clear()
                     }
                     else{
-                        alert("Cadastro não realizado.")
+                        //alert("Cadastro não realizado.")
                     }
                 }
             }

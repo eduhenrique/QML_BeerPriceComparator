@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import QtQuick.LocalStorage 2.0
 
-
 Item {
     id : database
     property var db : LocalStorage.openDatabaseSync("QBeerDB", "1.0", "Save information of Beer", 1000000)
@@ -33,10 +32,11 @@ Item {
                 "itemId": parseInt(rs.insertId),
                 "nome": nome,
                 "tamanho": tamanho,
-                "preço": parseFloat(preco),
+                "preco": parseFloat(preco),
                 "local": local
             })
         })
+        console.log("Add " + rs.insertId)
         return rs.insertId
     }
 
@@ -58,12 +58,16 @@ Item {
                     "itemId": parseInt(item.id),
                     "nome": item.nome,
                     "tamanho": item.tamanho,
-                    "preço": parseFloat(item.preco),
+                    "preco": parseFloat(item.preco),
                     "local": item.local
                 }
                 rs.push(obj)
+                console.log("obj " +obj.itemId + " | " + obj.nome + " | " + obj.tamanho + " | " + obj.preco + " | " + obj.local )
             }
+
         })
+
+        console.log("Load " + rs)
         beerLoaded(rs)
     }
 

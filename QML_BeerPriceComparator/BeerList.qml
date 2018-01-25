@@ -1,18 +1,20 @@
-import QtQuick 2.0
+import QtQuick 2.8
 import QtQuick.Controls 2.1
 import QtQuick.Window 2.2
 
 Page {
     title: "Comparador de Preço de cervejas"
+    property alias beerListViewModel: beerListView.model
+
     Label{
-        text: "Não há cervejas registradas"
+        text: "Nenhuma Cerveja cadastrada"
         anchors.centerIn: parent
         visible: !beerListView.model.count
     }
 
     ListView{
         id: beerListView
-        model: ListElement{}
+        model: ListModel { }
         anchors.fill: parent
 
         header: Rectangle{
@@ -36,41 +38,40 @@ Page {
             height: 33
 
             property int _itemId : itemId
-            property string nome: nome
-            property string tamanho: tamanho
+            property real nome: nome
+            property real tamanho: tamanho
             property double preco: preco
-            property string local: local
+            property real local: local
 
 
-            MouseArea{
+            /*MouseArea{
                 anchors.fill: parent
                 onPressAndHold: {
                         databaseInstance.deleteBeer(_itemId)
                         delegate.ListView.view.model.remove(index)
                 }
-            }
+            }*/
 
             Column{
-                anchors{fill:parent; margins: 50 }
+                anchors{fill: parent; margins: 50 }
 
                 Row{
+
                     Text {
-                        text: nome
+                        text: " Cerveja: "  + nome
                     }
                     Text{
-                        text: tamanho
+                        text: " Tamanho: " + tamanho
                     }
                     Text{
-                        text: preco
+                        text: " Valor: " + preco
                     }
                     Text{
-                        text: local
+                        text: " Estabelecimento: " + local
                     }
                 }
             }
-
         }
-
     }
 
 }

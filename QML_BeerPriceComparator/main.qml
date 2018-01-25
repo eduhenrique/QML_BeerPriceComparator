@@ -1,7 +1,9 @@
 import QtQuick 2.7
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.0
+import QtQuick.Controls 2.1
+import QtQuick.Layouts 1.3
 import QtQuick.LocalStorage 2.0
+import QtQuick.Window 2.2
+import QtQuick.Dialogs 1.2
 
 //  Link do papper QMl bit.do/espa04qt
 
@@ -14,10 +16,10 @@ ApplicationWindow {
 
     Database{
         id: databaseInstance
-        onBeerRegistered: beerListPage.beerListView.append(beer)
+        onBeerRegistered: beerListPage.beerListViewModel.append(beer)
         onBeerLoaded: {
-            for(var i=0; i<beers.lenght; i++){
-                beerListPage.beerListView.append(beers[i])
+            for(var i=0; i<beers.lenght; ++i){
+                beerListPage.beerListViewModel.append(beers[i])
             }
         }
     }

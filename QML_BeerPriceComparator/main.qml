@@ -14,6 +14,12 @@ ApplicationWindow {
 
     Database{
         id: databaseInstance
+        onBeerRegistered: beerListPage.beerListView.append(beer)
+        onBeerLoaded: {
+            for(var i=0; i<beers.lenght; i++){
+                beerListPage.beerListView.append(beers[i])
+            }
+        }
     }
 
     SwipeView {
@@ -43,7 +49,11 @@ ApplicationWindow {
                 anchors.centerIn: parent
             }
         }*/
+        BeerList{
+            id: beerListPage
+        }
         Cadastro{
+            id: cadastroPage
         }
 
     }
@@ -61,7 +71,10 @@ ApplicationWindow {
             text: qsTr("Third one")
         }*/
         TabButton {
-            text: qsTr("Cadastro")
+            text: qsTr("Visualize as informações")
+        }
+        TabButton {
+            text: qsTr("Cadastre um novo Item")
         }
     }
 

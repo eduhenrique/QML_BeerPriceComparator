@@ -7,13 +7,19 @@ Page {
     Rectangle{
         id: topBar
         width: parent.width
-        height: 40
-        border.color: "black"
+        height: 35
+
         Label{
             text: qsTr("Cadastro")
             color:"red"
 
             font.pointSize: Font.Light
+        }
+        Rectangle{
+            color: "black"
+            height: 1
+            width: parent.width
+            anchors.bottom: parent.bottom
         }
     }
 

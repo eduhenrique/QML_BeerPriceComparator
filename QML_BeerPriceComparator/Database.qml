@@ -51,11 +51,11 @@ Item {
     function loadBeers(){
         var rs = []
         database.db.transaction(function(tx){
-            var results = tx.executeSql('SELECT * FROM Beer')
+            var results = tx.executeSql('SELECT * FROM Beer', [])
             for(var i = 0; i < results.rows.length; i++){
                 var item = results.rows.item(i)
                 var obj ={
-                    "itemId": parseInt(item.insertId),
+                    "itemId": parseInt(item.id),
                     "nome": item.nome,
                     "tamanho": item.tamanho,
                     "preço": parseFloat(item.preco),

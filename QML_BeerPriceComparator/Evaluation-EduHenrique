@@ -1,0 +1,29 @@
+curl http://agora-server.herokuapp.com/beersales | python -m json.tool
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   217  100   217    0     0    217      0  0:00:01 --:--:--  0:00:01   565
+[
+    {
+        "id": 1,
+        "beer_name": "Skol",
+        "volume": 300,
+        "price_per_ml": 1.23,
+        "seller_latitude": 1.2,
+        "seller_longitude": 2.3
+    },
+    {
+        "id": 2,
+        "beer_name": "Itaipava",
+        "volume": 300,
+        "price_per_ml": 2.23,
+        "seller_latitude": 4.5,
+        "seller_longitude": 5.6
+    }
+]
+
+
+curl -x Delete http://agora-server.herokuapp.com/beersale/22 
+
+  endpoint ->  http://agora-server.herokuapp.com/beersale    POST
+        
+        ex: curl -d "beer_name=Cerveja&volume=300&price_per_ml=7&seller_latitude=1.5&seller_longitude=2.6"  -X POST <endpoint>

@@ -6,5 +6,7 @@
         <file>Cadastro.qml</file>
         <file>BeerList.qml</file>
         <file>PersistanceEvaluation.qml</file>
+        <file>MapViewer.qml</file>
+        <file>marker.png</file>
     </qresource>
 </RCC>

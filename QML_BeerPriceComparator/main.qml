@@ -44,7 +44,7 @@ ApplicationWindow {
             id: beerListPage
         }
         Cadastro{
-            id: cadastroPage
+            id: cadastroPage            
         }
 
         Page{

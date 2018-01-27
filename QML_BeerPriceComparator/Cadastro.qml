@@ -96,8 +96,21 @@ Page {
             }
         }
 
+        Row{
+            id: rowmap
+            anchors.top : row3.bottom
+            spacing: 150
+            Rectangle{
+                anchors.fill: parent
+                MapViewer{
+                    id: beerMap
+                }                
+            }
+        }
+
         Row {
             id: row4
+
             anchors.horizontalCenter: parent.horizontalCenter
 
             Button {
@@ -122,5 +135,6 @@ Page {
                 }
             }
         }
+
     }
 }

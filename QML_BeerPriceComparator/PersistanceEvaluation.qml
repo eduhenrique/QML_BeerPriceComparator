@@ -10,8 +10,8 @@ Item {
 
     function deleteBeer(id){
         var url = "http://agora-server.herokuapp.com/beersale/"+id
-        remove(url, function(o){
-                console.log("ITEM " + id +" Deletado")
+        remove(url, function(o){            
+            console.log("ITEM " + id +" Deletado")
         })
     }
 

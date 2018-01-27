@@ -41,7 +41,8 @@ Page {
             property real nome: nome
             property real tamanho: tamanho
             property double preco: preco
-            property real local: local
+            property double latitude: latitude
+            property double longitude: longitude
 
 
             /*MouseArea{
@@ -67,7 +68,10 @@ Page {
                         text: " Valor: " + preco
                     }
                     Text{
-                        text: " Estabelecimento: " + local
+                        text: " Latitude: " + latitude
+                    }
+                    Text{
+                        text: " Longitude: " + longitude
                     }
                 }
             }

@@ -14,12 +14,23 @@ ApplicationWindow {
     height: 480
     title: qsTr("Beer Price Comparator")
 
-    Database{
+    /*Database{
         id: databaseInstance
         onBeerRegistered: beerListPage.beerListViewModel.append(beer)
         onBeerLoaded: {
             for(var i=0; i<beers.lenght; ++i){
                 beerListPage.beerListViewModel.append(beers[i])
+            }
+        }
+    }*/
+
+    PersistanceEvaluation{
+        id: persistanceEvaluation
+
+        onBeerLoaded: {
+            for(var i=0; i<beers.lenght; ++i){
+                beerListPage.beerListViewModel.append(beers[i])
+                function(){ console.log(beers[i])}
             }
         }
     }
@@ -29,28 +40,6 @@ ApplicationWindow {
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
-        /*Page1 {
-            id: pg1
-        }
-
-        Page {
-            id: secondPage
-            Label {
-                id:label2page
-                text: qsTr("Second page")
-                anchors.centerIn: parent
-                onTextChanged: label3page.text = "textaaa"
-            }
-        }
-
-        Page {
-            id:thirdPage
-            Label {
-                id:label3page
-                text: qsTr("Third page")
-                anchors.centerIn: parent
-            }
-        }*/
         BeerList{
             id: beerListPage
         }
@@ -63,15 +52,7 @@ ApplicationWindow {
     footer: TabBar {
         id: tabBar
         currentIndex: swipeView.currentIndex
-        /*TabButton {
-            text: qsTr("First")
-        }
-        TabButton {
-            text: qsTr("Second")
-        }
-        TabButton {
-            text: qsTr("Third one")
-        }*/
+
         TabButton {
             text: qsTr("Visualize as informações")
         }

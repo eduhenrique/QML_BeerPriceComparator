@@ -35,11 +35,17 @@ Page {
                 id: row1label
                 text: qsTr("Cerveja: ")
             }
-            TextField {
+            /*TextField {
                 id: nome
                 placeholderText: qsTr("Marca da Cerveja")
                 width:parent.parent.width - row1label.width
 
+            }*/
+
+            ComboBox{
+                id: nome
+                width: 200
+                model: [ "Skol", "CervejaSo", "Schin", "Itaipava"]
             }
         }
 
@@ -72,13 +78,21 @@ Page {
             spacing:  10
 
             Label{
-                id: row3label
-                text: qsTr("Local: ")
+                id: row3label1
+                text: qsTr("Latitude: ")
             }
             TextField {
-                id: local
-                placeholderText: qsTr("Estabelecimento")
-                width:parent.parent.width - row3label.width
+                id: latitude
+                placeholderText: qsTr("Latitude")
+
+            }
+            Label{
+                id: row3label2
+                text: qsTr("Longitude: ")
+            }
+            TextField {
+                id: longitude
+                placeholderText: qsTr("Longitude")
             }
         }
 
@@ -93,13 +107,14 @@ Page {
                 onClicked: {
                     console.log("Cadastro clicked")
                     var volume = tamanho.text + " ml"
-                    var rs = databaseInstance.addBeer(nome.text, volume, preco.text, local.text)
+                    var rs = persistanceEvaluation.addBeer(nome.currentText, volume, preco.text, longitude.text, latitude.text)
 
                     if(rs){                        
                         nome.clear()
                         tamanho.clear()
                         preco.clear()
-                        local.clear()
+                        latitude.clear()
+                        longitude.clear()
                     }
                     else{
                         //alert("Cadastro não realizado.")

@@ -47,6 +47,30 @@ ApplicationWindow {
             id: cadastroPage
         }
 
+        Page{
+            id: deletepage
+
+            Column{
+
+                anchors.centerIn: parent
+
+                Row {
+                    TextField {
+                        id : idToDelete
+                        placeholderText: qsTr("Id para deletar")
+                    }
+                    Button{
+                        text: qsTr("Deletar")
+
+                        onClicked: {
+                           var rs = persistanceEvaluation.deleteBeer(idToDelete.text)
+                                idToDelete.clear()
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     footer: TabBar {
@@ -59,10 +83,9 @@ ApplicationWindow {
         TabButton {
             text: qsTr("Cadastre um novo Item")
         }
+        TabButton {
+            text: qsTr("Tente Deletar um item")
+        }
     }
-
-
-
-
 
 }

@@ -8,6 +8,14 @@ Item {
     Component.onCompleted: consulta()
 
 
+    function deleteBeer(id){
+        var url = "http://agora-server.herokuapp.com/beersale/"+id
+        remove(url, function(o){
+                console.log("ITEM " + id +" Deletado")
+        })
+    }
+
+
     function addBeer(nome, tamanho, preco, latitude, longitude){
 
         var url = "http://agora-server.herokuapp.com/beersale";
@@ -18,31 +26,38 @@ Item {
         })
     }
 
-
-
-
     function consulta(){
         var rs = []
         request('http://agora-server.herokuapp.com/beersales', function (o) {
-
-            // log the json response
             console.log(o.responseText);
 
-            // translate response into object
             var d = eval('new Object(' + o.responseText + ')');
 
-            // access elements inside json object with dot notation
-
-            id.text = parseInt(d.id)
+            /*id.text = parseInt(d.id)
             nome.text = d.beer_name
             tamanho.text = d.volume
             preco.text = parseDouble(d.price_per_ml)
             latitude.text = parseDouble(d.seller_latitude)
             longitude.text = parseDouble(d.seller_longitude)
-            rs.push(d)
+            rs.push(d)*/
         });
         beerLoaded(rs);
 
+    }
+
+    function remove(url, callback) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = (function(myxhr) {
+                return function() {
+                    if(myxhr.readyState === 4){
+                       callback(myxhr)
+                    }
+                }
+
+            })(xhr);
+            xhr.open('DELETE', url, true);
+            xhr.send('');
     }
 
 

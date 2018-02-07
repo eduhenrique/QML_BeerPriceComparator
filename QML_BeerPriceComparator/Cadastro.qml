@@ -84,6 +84,7 @@ Page {
             TextField {
                 id: latitude
                 placeholderText: qsTr("Latitude")
+                enabled: false
 
             }
             Label{
@@ -93,6 +94,14 @@ Page {
             TextField {
                 id: longitude
                 placeholderText: qsTr("Longitude")
+                enabled: false
+            }
+            Button{
+                id: mapButtom
+                text: qsTr("Escolher Valores")
+                onClicked: {
+                    swipeView.incrementCurrentIndex()
+                }
             }
         }
 
@@ -101,10 +110,7 @@ Page {
             anchors.top : row3.bottom
             spacing: 150
             Rectangle{
-                anchors.fill: parent
-                MapViewer{
-                    id: beerMap
-                }                
+                anchors.alignWhenCentered: parent
             }
         }
 

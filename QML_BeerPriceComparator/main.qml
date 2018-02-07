@@ -46,6 +46,9 @@ ApplicationWindow {
         Cadastro{
             id: cadastroPage            
         }
+        Map{
+            id: mapSwipePage
+        }
 
         Page{
             id: deletepage
@@ -82,6 +85,9 @@ ApplicationWindow {
         }
         TabButton {
             text: qsTr("Cadastre um novo Item")
+        }
+        TabButton {
+            text: qsTr("Map teste")
         }
         TabButton {
             text: qsTr("Tente Deletar um item")

@@ -9,5 +9,7 @@
         <file>MapViewer.qml</file>
         <file>marker.png</file>
         <file>Map.qml</file>
+        <file>ItemMarker.qml</file>
+        <file>marker2.png</file>
     </qresource>
 </RCC>

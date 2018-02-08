@@ -3,6 +3,8 @@ import QtQuick.Controls 2.1
 
 Page {
     title: "Cadastrar Cerveja"
+    property variant longitudeProp: 0
+    property variant latitudeProp: 0
 
     Rectangle{
         id: topBar
@@ -24,6 +26,7 @@ Page {
     }
 
     Column{
+        id: column1
         anchors.fill: parent
         anchors.margins:50
 
@@ -84,7 +87,8 @@ Page {
             TextField {
                 id: latitude
                 placeholderText: qsTr("Latitude")
-                enabled: false
+                text: latitudeProp == 0 ? '' : latitudeProp.toLocaleString()
+                readOnly: true
 
             }
             Label{
@@ -94,7 +98,8 @@ Page {
             TextField {
                 id: longitude
                 placeholderText: qsTr("Longitude")
-                enabled: false
+                text: longitudeProp == 0 ? '' : longitudeProp.toLocaleString()
+                readOnly: true
             }
             Button{
                 id: mapButtom

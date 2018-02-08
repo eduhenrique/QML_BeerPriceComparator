@@ -48,6 +48,11 @@ ApplicationWindow {
         }
         Map{
             id: mapSwipePage
+            onCoordinatesChose: {
+                console.log("Latitude: "+mapCenter.latitude+"  Longitude: "+ mapCenter.longitude );
+                cadastroPage.latitudeProp = mapCenter.latitude
+                cadastroPage.longitudeProp = mapCenter.longitude
+            }
         }
 
         Page{

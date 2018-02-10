@@ -7,6 +7,7 @@ import QtPositioning 5.6
 
 Page {
     property alias beerLocationModel: mapview.model
+    property alias beerMarker: currentMarker.sourceImg
     property string currentPlaceName: "SSA"
     property variant currentPlaceCoordinates: QtPositioning.coordinate(-12.9978, -38.4777)
     signal coordinatesChose(var mapCenter)
@@ -41,7 +42,8 @@ Page {
         ItemMarker{            
            id: currentMarker
            mapQuickItemPlaceCoordinates: currentPlaceCoordinates
-           sourceImg: "qrc:/marker.png"
+           //sourceImg: "qrc:/marker.png"
+           sourceImg: ""
         }
 
         MapItemView {
@@ -49,9 +51,13 @@ Page {
             //model: searchModel
             model: ListModel{}
             delegate: ItemMarker{
+                property int _itemId : itemId
+                property string _nome: nome
+                property real _volume: volume
+                property double _preco: preco
                 property real _latitude: latitude
                 property real _longitude: longitude
-               mapQuickItemPlaceCoordinates: QtPositioning.coordinate(_latitude, _longitude)
+               mapQuickItemPlaceCoordinates: QtPositioning.coordinate( _latitude, _longitude)
             }
         }
 
@@ -76,7 +82,8 @@ Page {
                 //console.log("Latitude: " + map.center.latitude + "  Longitude: " + map.center.longitude)
             }
 
-            onPressAndHold: {                
+            onPressAndHold: {
+                currentMarker.sourceImg = "qrc:/marker.png"
                 currentMarker.coordinate = map.toCoordinate(Qt.point(mouse.x, mouse.y));
                 coordinatesChose(map.center)                
                 //swipeView.decrementCurrentIndex();

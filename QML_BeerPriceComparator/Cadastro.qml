@@ -125,18 +125,14 @@ Page {
                 onClicked: {
                     console.log("Cadastro clicked")
                     var volume = tamanho.text + " ml"
-                    var rs = persistanceEvaluation.addBeer(nome.currentText, volume, preco.text, longitude.text, latitude.text)
+                    var rs = persistanceEvaluation.addBeer(nome.currentText, volume, preco.text, latitude.text, longitude.text)
 
-                    if(rs){                        
-                        nome.clear()
-                        tamanho.clear()
-                        preco.clear()
-                        latitude.clear()
-                        longitude.clear()
-                    }
-                    else{
-                        //alert("Cadastro não realizado.")
-                    }
+                    tamanho.clear()
+                    preco.clear()
+                    latitude.clear()
+                    longitude.clear()
+
+                    mapSwipePage.beerMarker = ""
                 }
             }
         }

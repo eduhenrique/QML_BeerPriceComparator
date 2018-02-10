@@ -7,7 +7,7 @@ Page {
     property alias beerListViewModel: beerListView.model
 
     Label{
-        text: "Nenhuma Cerveja cadastrada"
+        text: "Carregando informações."
         anchors.centerIn: parent
         visible: !beerListView.model.count
     }

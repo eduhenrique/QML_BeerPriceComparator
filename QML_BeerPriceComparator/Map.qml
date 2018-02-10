@@ -6,8 +6,8 @@ import QtLocation 5.6
 import QtPositioning 5.6
 
 Page {
-    property string currentPlaceName: "Estações de Metrô - RJ"
-    property variant currentPlaceCoordinates: QtPositioning.coordinate(-12.6590134, -39.090068)
+    property string currentPlaceName: "SSA"
+    property variant currentPlaceCoordinates: QtPositioning.coordinate(-12.9978, -38.4777)
     signal coordinatesChose(var mapCenter)
 
     id: mapPage
@@ -32,7 +32,7 @@ Page {
 
         ItemMarker{
             id: marker
-            coordinate: currentPlaceCoordinates
+            mapQuickItemPlaceCoordinates: currentPlaceCoordinates
             sourceImg: "qrc:/marker.png"
         }
 
@@ -60,6 +60,7 @@ Page {
             onPressAndHold: {
                 marker.coordinate = map.toCoordinate(Qt.point(mouse.x, mouse.y));
                 coordinatesChose(map.center)
+                tabBar.activeFocusOnTab
                 //swipeView.decrementCurrentIndex();
                 //swipeView.setCurrentIndex(swipeView.currentIndex-1)
             }

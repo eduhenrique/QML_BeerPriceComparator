@@ -3,8 +3,8 @@ import QtQuick.Controls 2.1
 
 Page {
     title: "Cadastrar Cerveja"
-    property variant longitudeProp: 0
-    property variant latitudeProp: 0
+    property real longitudeProp: 0
+    property real latitudeProp: 0
 
     Rectangle{
         id: topBar
@@ -87,7 +87,7 @@ Page {
             TextField {
                 id: latitude
                 placeholderText: qsTr("Latitude")
-                text: latitudeProp == 0 ? '' : latitudeProp.toLocaleString()
+                text: latitudeProp == 0 ? '' : latitudeProp.valueOf()
                 readOnly: true
 
             }
@@ -98,7 +98,7 @@ Page {
             TextField {
                 id: longitude
                 placeholderText: qsTr("Longitude")
-                text: longitudeProp == 0 ? '' : longitudeProp.toLocaleString()
+                text: longitudeProp == 0 ? '' : longitudeProp.valueOf()
                 readOnly: true
             }
             Button{

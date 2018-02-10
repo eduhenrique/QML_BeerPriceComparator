@@ -17,60 +17,67 @@ Page {
         model: ListModel { }
         anchors.fill: parent
 
-        header: Rectangle{
-            width: parent.width;
-            height: 33
-            Label{
-                text: qsTr("Beer Price Comparator")
-                color:"red"
-                font.pointSize: Font.Light
+        header:
+        Rectangle{
+                width: parent.width;
+                height: 33
+                Label{
+                    text: qsTr("Beer Price Comparator")
+                    color:"red"
+                    font.pointSize: Font.Light
+                }
+                Rectangle{
+                    color: "black"
+                    height: 1
+                    width: parent.width
+                    anchors.bottom: parent.bottom
+                }
             }
-            Rectangle{
-                color: "black"
-                height: 1
-                width: parent.width
-                anchors.bottom: parent.bottom
-            }
-        }
+
         delegate: Rectangle{
             id : delegate
             width: parent.width
-            height: 33
+            height: 80
 
             property int _itemId : itemId
-            property real nome: nome
-            property real tamanho: tamanho
-            property double preco: preco
-            property double latitude: latitude
-            property double longitude: longitude
-
-
-            /*MouseArea{
-                anchors.fill: parent
-                onPressAndHold: {
-                        databaseInstance.deleteBeer(_itemId)
-                        delegate.ListView.view.model.remove(index)
-                }
-            }*/
+            property string _nome: nome
+            property real _volume: volume
+            property double _preco: preco
+            property real _latitude: latitude
+            property real _longitude: longitude
 
             Column{
                 anchors{fill: parent; margins: 50 }
 
                 Row{
+                    spacing: 2
+
+                    Label {
+                        id: txtItemId
+                        text: itemId
+                    }
+                }
+                Row{
+                    spacing: 2
 
                     Text {
+                        id: txtNome
                         text: " Cerveja: "  + nome
                     }
                     Text{
-                        text: " Tamanho: " + tamanho
+                        id: txtVolume
+                        text: " volume: " + volume
                     }
                     Text{
+                        id: txtValor
                         text: " Valor: " + preco
                     }
                     Text{
+                        id: txtLatitude
                         text: " Latitude: " + latitude
                     }
                     Text{
+                        id: txtLongitude
                         text: " Longitude: " + longitude
                     }
                 }

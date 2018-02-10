@@ -2,11 +2,11 @@ import QtQuick 2.0
 
 Item {
     id: databaseEvaluation
+
     signal beerLoaded(var beers)
     signal beerRegistered(var beer)
 
     Component.onCompleted: consulta()
-
 
     function deleteBeer(id){
         var url = "http://agora-server.herokuapp.com/beersale/"+id
@@ -29,20 +29,23 @@ Item {
     function consulta(){
         var rs = []
         request('http://agora-server.herokuapp.com/beersales', function (o) {
-            console.log(o.responseText);
 
             var d = eval('new Object(' + o.responseText + ')');
 
-            /*id.text = parseInt(d.id)
-            nome.text = d.beer_name
-            tamanho.text = d.volume
-            preco.text = parseDouble(d.price_per_ml)
-            latitude.text = parseDouble(d.seller_latitude)
-            longitude.text = parseDouble(d.seller_longitude)
-            rs.push(d)*/
+            for(var i = 0; i < d.length; i++){
+                var item = d[i]
+                var obj ={
+                    "itemId": parseInt(item.id),
+                    "nome": item.beer_name,
+                    "volume": item.volume,
+                    "preco": parseFloat(item.price_per_ml),
+                    "latitude": parseFloat(item.seller_latitude),
+                    "longitude": parseFloat(item.seller_longitude)
+                }
+                rs.push(obj)
+            }
+            beerLoaded(rs)
         });
-        beerLoaded(rs);
-
     }
 
     function remove(url, callback) {

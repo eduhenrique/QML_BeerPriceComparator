@@ -13,23 +13,24 @@ ApplicationWindow {
     width: 640
     height: 480
     title: qsTr("Beer Price Comparator")
-
-    /*Database{
-        id: databaseInstance
-        onBeerRegistered: beerListPage.beerListViewModel.append(beer)
-        onBeerLoaded: {
-            for(var i=0; i<beers.lenght; ++i){
-                beerListPage.beerListViewModel.append(beers[i])
-            }
-        }
-    }*/
-
+    
     PersistanceEvaluation{
         id: persistanceEvaluation
 
+        function limparLista()
+        {
+            beerListPage.beerListViewModel.clear()
+        }
+
+        function adicionarItemLista(item)
+        {
+            beerListPage.beerListViewModel.append(item)
+        }
+
         onBeerLoaded: {
-            for(var i=0; i<beers.lenght; ++i){
-                beerListPage.beerListViewModel.append(beers[i])
+            limparLista()
+            for(var i=0; i<beers.length; ++i){
+                adicionarItemLista(beers[i])
                 function(){ console.log(beers[i])}
             }
         }
@@ -87,6 +88,9 @@ ApplicationWindow {
 
         TabButton {
             text: qsTr("Visualize as informações")
+            onClicked: {
+              var rs = persistanceEvaluation.consulta()
+            }
         }
         TabButton {
             text: qsTr("Cadastre um novo Item")

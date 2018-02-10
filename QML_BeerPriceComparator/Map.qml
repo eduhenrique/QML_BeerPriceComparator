@@ -6,6 +6,7 @@ import QtLocation 5.6
 import QtPositioning 5.6
 
 Page {
+    property alias beerLocationModel: mapview.model
     property string currentPlaceName: "SSA"
     property variant currentPlaceCoordinates: QtPositioning.coordinate(-12.9978, -38.4777)
     signal coordinatesChose(var mapCenter)
@@ -23,6 +24,13 @@ Page {
         //PluginParameter { name: "osm.geocoding.host"; value: "http://geocoding.server.address" }
     }
 
+    /*PlaceSearchModel {
+        id: searchModel
+        plugin: mapPlugin
+        searchArea: QtPositioning.circle(currentPlaceCoordinates);
+        Component.onCompleted: update()
+    }*/
+
     Map {
         id: map
         anchors.fill: parent
@@ -30,10 +38,21 @@ Page {
         center: currentPlaceCoordinates
         zoomLevel: 15
 
-        ItemMarker{
-            id: marker
-            mapQuickItemPlaceCoordinates: currentPlaceCoordinates
-            sourceImg: "qrc:/marker.png"
+        ItemMarker{            
+           id: currentMarker
+           mapQuickItemPlaceCoordinates: currentPlaceCoordinates
+           sourceImg: "qrc:/marker.png"
+        }
+
+        MapItemView {
+            id: mapview
+            //model: searchModel
+            model: ListModel{}
+            delegate: ItemMarker{
+                property real _latitude: latitude
+                property real _longitude: longitude
+               mapQuickItemPlaceCoordinates: QtPositioning.coordinate(_latitude, _longitude)
+            }
         }
 
         MouseArea{
@@ -57,10 +76,9 @@ Page {
                 //console.log("Latitude: " + map.center.latitude + "  Longitude: " + map.center.longitude)
             }
 
-            onPressAndHold: {
-                marker.coordinate = map.toCoordinate(Qt.point(mouse.x, mouse.y));
-                coordinatesChose(map.center)
-                tabBar.activeFocusOnTab
+            onPressAndHold: {                
+                currentMarker.coordinate = map.toCoordinate(Qt.point(mouse.x, mouse.y));
+                coordinatesChose(map.center)                
                 //swipeView.decrementCurrentIndex();
                 //swipeView.setCurrentIndex(swipeView.currentIndex-1)
             }

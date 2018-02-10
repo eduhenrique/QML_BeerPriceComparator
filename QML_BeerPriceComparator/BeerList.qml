@@ -80,6 +80,7 @@ Page {
                         id: txtLongitude
                         text: " Longitude: " + longitude
                     }
+
                 }
             }
         }

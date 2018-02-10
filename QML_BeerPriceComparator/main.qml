@@ -32,6 +32,8 @@ ApplicationWindow {
             for(var i=0; i<beers.length; ++i){
                 adicionarItemLista(beers[i])
                 function(){ console.log(beers[i])}
+
+                mapSwipePage.beerLocationModel.append(beers[i])
             }
         }
     }

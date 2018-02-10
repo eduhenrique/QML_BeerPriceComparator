@@ -38,12 +38,6 @@ Page {
                 id: row1label
                 text: qsTr("Cerveja: ")
             }
-            /*TextField {
-                id: nome
-                placeholderText: qsTr("Marca da Cerveja")
-                width:parent.parent.width - row1label.width
-
-            }*/
 
             ComboBox{
                 id: nome

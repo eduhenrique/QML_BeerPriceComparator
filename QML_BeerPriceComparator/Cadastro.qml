@@ -23,7 +23,7 @@ Page {
             x: 129
             y: 0
             text: qsTr("Cadastro")
-            color:"#ffaa00"
+            color:"red"
 
             font.pointSize: Font.Light
         }
@@ -35,71 +35,78 @@ Page {
         }
     }
 
-
-
-
-Label{
-      id: row1label
-      x: 46
-      y: 213
-      color: "#ffaa00"
-      text: qsTr("Cerveja: ")
-     }
-
-ComboBox{
-         id: nome
-         x: 131
-         y: 199
-         width: 200
-         model: [ "Skol", "CervejaSo", "Schin", "Itaipava"]
+        Label{
+          id: row1label
+          //x: 46
+          //y: 213
+          x: 43
+          y: 74
+          color: "red"
+          text: qsTr("Cerveja: ")
         }
 
-
-
+        ComboBox{
+             id: nome
+             //x: 131
+             //y: 199
+             x: 131
+             y: 60
+             width: 200
+             model: [ "Skol", "CervejaSo", "Schin", "Itaipava"]
+        }
             Label{
                 id: row2label1
+                //x: 46
+                //y: 167
                 x: 46
-                y: 167
-                color: "#ffaa00"
+                y: 120
+                color: "red"
                 text: qsTr("Volume: ")
             }
 
             TextField {
                 id: tamanho
+                //x: 131
+                //y: 153
                 x: 131
-                y: 153
-                placeholderText: qsTr("em ml")
-                width:parent.parent.width/2 - row2label1.width
+                y: 106
+                placeholderText: qsTr("em ml")                
             }
 
             Label{
                 id: row2label2
-                x: 56
-                y: 253
-                color: "#ffaa00"
+                //x: 56
+                //y: 253
+                x: 46
+                y: 167
+                color: "red"
                 text: qsTr("Preço: ")
             }
             TextField {
                 id: preco
+                //x: 131
+                //y: 247
                 x: 131
-                y: 247
-                width:parent.parent.width/2 - row2label1.width
+                y: 153
             }
-
 
             Label{
                 id: row3label1
-                x: 43
-                y: 74
+                //x: 43
+                //y: 74
+                x: 46
+                y: 213
                 height: 13
-                color: "#ffaa00"
+                color: "red"
                 text: qsTr("Latitude: ")
             }
 
             TextField {
                 id: latitude
+                //x: 131
+                //y: 60
                 x: 131
-                y: 60
+                y: 199
                 placeholderText: qsTr("Latitude")
                 text: latitudeProp == 0 ? '' : latitudeProp.valueOf()
                 readOnly: true
@@ -107,16 +114,20 @@ ComboBox{
 
             Label{
                 id: row3label2
-                x: 35
-                y: 120
-                color: "#ffaa00"
+                x: 46
+                y: 253
+                //x: 46
+                //y: 167
+                color: "red"
                 text: qsTr("Longitude: ")
             }
 
             TextField {
                 id: longitude
                 x: 131
-                y: 106
+                y: 247
+                //x: 131
+                //y: 153
                 placeholderText: qsTr("Longitude")
                 text: longitudeProp == 0 ? '' : longitudeProp.valueOf()
                 readOnly: true
@@ -124,29 +135,18 @@ ComboBox{
 
             Button{
                 id: mapButtom
-                x: 387
-                y: 421
+                x: 333
+                y: 225
                 text: qsTr("Escolher Valores")
                 onClicked: {
-                swipeView.incrementCurrentIndex()
+                    swipeView.incrementCurrentIndex()
                 }
             }
-
-
-            Row{
-                id: rowmap
-                //anchors.top : row3.bottom
-                spacing: 150
-                Rectangle{
-                anchors.alignWhenCentered: parent
-                }
-            }
-
 
             Button {
                 id: cadastrar
-                x: 131
-                y: 293
+                x: 185
+                y: 299
                 text: qsTr("Cadastrar")
                 onClicked: {
                     console.log("Cadastro clicked")

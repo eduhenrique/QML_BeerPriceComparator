@@ -13,7 +13,7 @@ Page {
     Label{
         width: 200
         height: 30
-        text: "Nenhuma Cerveja cadastrada"
+        text: "                   Carregando Itens"
         anchors.verticalCenterOffset: -159
         anchors.horizontalCenterOffset: -175
         anchors.centerIn: parent

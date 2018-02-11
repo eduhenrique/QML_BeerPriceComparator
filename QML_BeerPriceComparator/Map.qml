@@ -17,12 +17,7 @@ Page {
 
     Plugin {
         id: mapPlugin
-        name: "osm" // "mapboxgl", "esri", ...
-        //PluginParameter { name: "osm.useragent"; value: "My First QML App" }
-        //PluginParameter { name: "osm.mapping.host"; value: "http://osm.tile.server.address/" }
-        //PluginParameter { name: "osm.mapping.copyright"; value: "Open Street Map" }
-        //PluginParameter { name: "osm.routing.host"; value: "http://osrm.server.address/viaroute" }
-        //PluginParameter { name: "osm.geocoding.host"; value: "http://geocoding.server.address" }
+        name: "osm" // "mapboxgl", "esri", ...        
     }
 
     /*PlaceSearchModel {
@@ -42,7 +37,6 @@ Page {
         ItemMarker{            
            id: currentMarker
            mapQuickItemPlaceCoordinates: currentPlaceCoordinates
-           //sourceImg: "qrc:/marker.png"
            sourceImg: ""
         }
 
@@ -51,13 +45,9 @@ Page {
             //model: searchModel
             model: ListModel{}
             delegate: ItemMarker{
-                property int _itemId : itemId
-                property string _nome: nome
-                property real _volume: volume
-                property double _preco: preco
                 property real _latitude: latitude
                 property real _longitude: longitude
-               mapQuickItemPlaceCoordinates: QtPositioning.coordinate( _latitude, _longitude)
+               mapQuickItemPlaceCoordinates: QtPositioning.coordinate(_latitude, _longitude)
             }
         }
 

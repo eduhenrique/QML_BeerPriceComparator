@@ -10,8 +10,8 @@ import QtQuick.Dialogs 1.2
 ApplicationWindow {
     id: app
     visible: true
-    width: 640
-    height: 480
+    width: 1024
+    height: 800
     title: qsTr("Beer Price Comparator")
     
     PersistanceEvaluation{
@@ -53,35 +53,10 @@ ApplicationWindow {
             id: mapSwipePage
             onCoordinatesChose: {
                 console.log("Latitude: "+mapCenter.latitude+"  Longitude: "+ mapCenter.longitude );
-                cadastroPage.longitudeProp = mapCenter.longitude
                 cadastroPage.latitudeProp = mapCenter.latitude
+                cadastroPage.longitudeProp = mapCenter.longitude
             }
         }
-
-        Page{
-            id: deletepage
-
-            Column{
-
-                anchors.centerIn: parent
-
-                Row {
-                    TextField {
-                        id : idToDelete
-                        placeholderText: qsTr("Id para deletar")
-                    }
-                    Button{
-                        text: qsTr("Deletar")
-
-                        onClicked: {
-                           var rs = persistanceEvaluation.deleteBeer(idToDelete.text)
-                                idToDelete.clear()
-                        }
-                    }
-                }
-            }
-        }
-
     }
 
     footer: TabBar {
@@ -99,9 +74,6 @@ ApplicationWindow {
         }
         TabButton {
             text: qsTr("Map teste")
-        }
-        TabButton {
-            text: qsTr("Tente Deletar um item")
         }
     }
 

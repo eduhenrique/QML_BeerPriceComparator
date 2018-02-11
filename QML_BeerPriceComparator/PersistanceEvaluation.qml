@@ -31,7 +31,7 @@ Item {
         request('http://agora-server.herokuapp.com/beersales', function (o) {
 
             var d = eval('new Object(' + o.responseText + ')');
-
+            console.log("d: " + d)
             for(var i = 0; i < d.length; i++){
                 var item = d[i]
                 var obj ={

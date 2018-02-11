@@ -64,16 +64,16 @@ ApplicationWindow {
         currentIndex: swipeView.currentIndex
 
         TabButton {
-            text: qsTr("Visualize as informações")
+            text: qsTr("Visualizar")
             onClicked: {
               var rs = persistanceEvaluation.consulta()
             }
         }
         TabButton {
-            text: qsTr("Cadastre um novo Item")
+            text: qsTr("Cadastrar")
         }
         TabButton {
-            text: qsTr("Map teste")
+            text: qsTr("Mapa")
         }
     }
 

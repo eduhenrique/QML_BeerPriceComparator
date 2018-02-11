@@ -135,8 +135,8 @@ Page {
 
             Button{
                 id: mapButtom
-                x: 333
-                y: 225
+                x: 185
+                y: 290
                 text: qsTr("Escolher Valores")
                 onClicked: {
                     swipeView.incrementCurrentIndex()
@@ -146,7 +146,7 @@ Page {
             Button {
                 id: cadastrar
                 x: 185
-                y: 299
+                y: 350
                 text: qsTr("Cadastrar")
                 onClicked: {
                     console.log("Cadastro clicked")

@@ -2,14 +2,26 @@ import QtQuick 2.7
 import QtQuick.Controls 2.1
 
 Page {
+    x:0
+    y:0
+    height: 570
+    width: 700
     title: "Cadastrar Cerveja"
+    property real longitudeProp: 0
+    property real latitudeProp: 0
+    transformOrigin: Item.Center
 
     Rectangle{
         id: topBar
-        width: parent.width
-        height: 35
+        width: 600
+        height: 570
+        anchors.bottomMargin: 451
+        anchors.rightMargin: 196
+        anchors.fill: parent
 
         Label{
+            x: 129
+            y: 0
             text: qsTr("Cadastro")
             color:"red"
 
@@ -19,122 +31,137 @@ Page {
             color: "black"
             height: 1
             width: parent.width
-            anchors.bottom: parent.bottom
+            //anchors.bottom: parent.bottom
         }
     }
 
-    Column{
-        anchors.fill: parent
-        anchors.margins:50
-
-        Row {
-            id:row1
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            Label{
-                id: row1label
-                text: qsTr("Cerveja: ")
-            }
-            /*TextField {
-                id: nome
-                placeholderText: qsTr("Marca da Cerveja")
-                width:parent.parent.width - row1label.width
-
-            }*/
-
-            ComboBox{
-                id: nome
-                width: 200
-                model: [ "Skol", "CervejaSo", "Schin", "Itaipava"]
-            }
+        Label{
+          id: row1label
+          //x: 46
+          //y: 213
+          x: 43
+          y: 74
+          color: "red"
+          text: qsTr("Cerveja: ")
         }
 
-        Row {
-            id: row2
-            anchors.horizontalCenter: parent.horizontalCenter
+        ComboBox{
+             id: nome
+             //x: 131
+             //y: 199
+             x: 131
+             y: 60
+             width: 200
+             model: [ "Skol", "CervejaSo", "Schin", "Itaipava"]
+        }
             Label{
                 id: row2label1
+                //x: 46
+                //y: 167
+                x: 46
+                y: 120
+                color: "red"
                 text: qsTr("Volume: ")
             }
+
             TextField {
                 id: tamanho
-                placeholderText: qsTr("em ml")
-                width:parent.parent.width/2 - row2label1.width
+                //x: 131
+                //y: 153
+                x: 131
+                y: 106
+                placeholderText: qsTr("em ml")                
             }
 
             Label{
                 id: row2label2
+                //x: 56
+                //y: 253
+                x: 46
+                y: 167
+                color: "red"
                 text: qsTr("Preço: ")
             }
             TextField {
                 id: preco
-                width:parent.parent.width/2 - row2label1.width
+                //x: 131
+                //y: 247
+                x: 131
+                y: 153
             }
-        }
-
-        Row {
-            id: row3
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing:  10
 
             Label{
                 id: row3label1
+                //x: 43
+                //y: 74
+                x: 46
+                y: 213
+                height: 13
+                color: "red"
                 text: qsTr("Latitude: ")
             }
+
             TextField {
                 id: latitude
+                //x: 131
+                //y: 60
+                x: 131
+                y: 199
                 placeholderText: qsTr("Latitude")
-
+                text: latitudeProp == 0 ? '' : latitudeProp.valueOf()
+                readOnly: true
             }
+
             Label{
                 id: row3label2
+                x: 46
+                y: 253
+                //x: 46
+                //y: 167
+                color: "red"
                 text: qsTr("Longitude: ")
             }
+
             TextField {
                 id: longitude
+                x: 131
+                y: 247
+                //x: 131
+                //y: 153
                 placeholderText: qsTr("Longitude")
+                text: longitudeProp == 0 ? '' : longitudeProp.valueOf()
+                readOnly: true
             }
-        }
 
-        Row{
-            id: rowmap
-            anchors.top : row3.bottom
-            spacing: 150
-            Rectangle{
-                anchors.fill: parent
-                MapViewer{
-                    id: beerMap
-                }                
+            Button{
+                id: mapButtom
+                x: 185
+                y: 290
+                text: qsTr("Escolher Valores")
+                onClicked: {
+                    swipeView.incrementCurrentIndex()
+                }
             }
-        }
-
-        Row {
-            id: row4
-
-            anchors.horizontalCenter: parent.horizontalCenter
 
             Button {
                 id: cadastrar
+                x: 185
+                y: 350
                 text: qsTr("Cadastrar")
-
                 onClicked: {
                     console.log("Cadastro clicked")
                     var volume = tamanho.text + " ml"
-                    var rs = persistanceEvaluation.addBeer(nome.currentText, volume, preco.text, longitude.text, latitude.text)
+                    var rs = persistanceEvaluation.addBeer(nome.currentText, volume, preco.text, latitude.text, longitude.text)
 
-                    if(rs){                        
-                        nome.clear()
-                        tamanho.clear()
-                        preco.clear()
-                        latitude.clear()
-                        longitude.clear()
-                    }
-                    else{
-                        //alert("Cadastro não realizado.")
-                    }
+                    tamanho.clear()
+                    preco.clear()
+                    latitude.clear()
+                    longitude.clear()
+
+                    mapSwipePage.beerMarker = ""
                 }
             }
-        }
 
-    }
+
 }
+

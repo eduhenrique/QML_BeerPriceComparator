@@ -10,27 +10,30 @@ import QtQuick.Dialogs 1.2
 ApplicationWindow {
     id: app
     visible: true
-    width: 640
-    height: 480
+    width: 1024
+    height: 800
     title: qsTr("Beer Price Comparator")
-
-    /*Database{
-        id: databaseInstance
-        onBeerRegistered: beerListPage.beerListViewModel.append(beer)
-        onBeerLoaded: {
-            for(var i=0; i<beers.lenght; ++i){
-                beerListPage.beerListViewModel.append(beers[i])
-            }
-        }
-    }*/
-
+    
     PersistanceEvaluation{
         id: persistanceEvaluation
 
+        function limparLista()
+        {
+            beerListPage.beerListViewModel.clear()
+        }
+
+        function adicionarItemLista(item)
+        {
+            beerListPage.beerListViewModel.append(item)
+        }
+
         onBeerLoaded: {
-            for(var i=0; i<beers.lenght; ++i){
-                beerListPage.beerListViewModel.append(beers[i])
+            limparLista()
+            for(var i=0; i<beers.length; ++i){
+                adicionarItemLista(beers[i])
                 function(){ console.log(beers[i])}
+
+                mapSwipePage.beerLocationModel.append(beers[i])
             }
         }
     }
@@ -46,31 +49,14 @@ ApplicationWindow {
         Cadastro{
             id: cadastroPage            
         }
-
-        Page{
-            id: deletepage
-
-            Column{
-
-                anchors.centerIn: parent
-
-                Row {
-                    TextField {
-                        id : idToDelete
-                        placeholderText: qsTr("Id para deletar")
-                    }
-                    Button{
-                        text: qsTr("Deletar")
-
-                        onClicked: {
-                           var rs = persistanceEvaluation.deleteBeer(idToDelete.text)
-                                idToDelete.clear()
-                        }
-                    }
-                }
+        Map{
+            id: mapSwipePage
+            onCoordinatesChose: {
+                console.log("Latitude: "+mapCenter.latitude+"  Longitude: "+ mapCenter.longitude );
+                cadastroPage.latitudeProp = mapCenter.latitude
+                cadastroPage.longitudeProp = mapCenter.longitude
             }
         }
-
     }
 
     footer: TabBar {
@@ -78,13 +64,16 @@ ApplicationWindow {
         currentIndex: swipeView.currentIndex
 
         TabButton {
-            text: qsTr("Visualize as informações")
+            text: qsTr("Visualizar")
+            onClicked: {
+              var rs = persistanceEvaluation.consulta()
+            }
         }
         TabButton {
-            text: qsTr("Cadastre um novo Item")
+            text: qsTr("Cadastrar")
         }
         TabButton {
-            text: qsTr("Tente Deletar um item")
+            text: qsTr("Mapa")
         }
     }
 
